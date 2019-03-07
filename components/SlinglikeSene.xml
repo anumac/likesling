@@ -1,0 +1,46 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+<component name = "slingLikesene" extends = "Scene" >
+  <script type = "text/brightscript" uri="pkg:/components/slinglikesene.brs" >
+  </script>
+  <interface>
+  <field id="posterItem_selected"
+          type="assocarray"
+          alias="examplePosterGrid.itemSelected"
+      />
+    <field id="rowItem_selected" type="assocArray" alwaysnotify="true" alias="theRowlist.rowItemSelected" />  
+      <function name="updateConfig" />
+      </interface>
+   <children>
+    <!-- color="0x000000" -->
+
+     <Overhang
+      id="overhang"
+      title="This is Test" 
+      color = "0x101023ff"
+      optionsAvailable = "true" 
+      >
+      <PosterGrid 
+      id = "examplePosterGrid" 
+     translation = "[ 400, 20 ]"
+      basePosterSize = "[ 200, 50 ]" 
+      captionBackgroundBitmapUri=""
+      posterDisplayMode="scaleToZoooms"
+      caption1NumLines = "1" 
+      numColumns = "4" 
+      numRows = "1" 
+      itemSpacing = "[ 20, 20 ]" />
+
+      </Overhang>
+<SimpleRowList id="theRowList" translation="[50,200]" />
+ <Video
+      id="videoplayer"
+      visible="false"
+      translation="[0,0]"
+      width="1920"
+      height="1080" />
+      <Dialog
+    title="Error"
+    visible="false"
+    id="error_dialog" />
+</children>
+</component>

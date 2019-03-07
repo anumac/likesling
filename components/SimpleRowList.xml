@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<!--********** Copyright 2016 Roku Corp.  All Rights Reserved. **********-->
+
+
+<component name="SimpleRowList" extends="RowList" >
+<interface>
+<function name="GetRowListContent" />
+
+</interface>
+<script type="text/brightscript" >
+
+<![CDATA[
+
+    function init()
+        print "in SimpleRowListPanel init()"
+	
+	    m.top.itemComponentName = "SimpleRowListItem"
+	    m.top.numRows = 2
+	    m.top.itemSize = [196 * 6 + 20 * 2, 213]
+	    m.top.rowHeights = [213]
+	    m.top.rowItemSize = [ [196, 213], [196, 213], [196, 213],[196, 213],[196, 213],[196, 213] ]
+	    m.top.itemSpacing = [ 0, 80 ]
+	    m.top.rowItemSpacing = [ [20, 0] ]
+		m.top.rowLabelOffset = [ [0, 30] ]
+	    m.top.rowFocusAnimationStyle = "floatingFocus"
+		m.top.showRowLabel = [true, true]
+		m.top.rowLabelColor="0xa0b033ff"
+       
+	    m.top.visible = true
+	    m.top.SetFocus(true)
+	   
+    end function
+
+	function GetRowListContent(params)
+	    'Populate the RowList content here
+		'print "inGetRowListContent " params.config
+
+	    data = CreateObject("roSGNode", "ContentNode")
+
+	    for numRows = 0 to 1
+	        row = data.CreateChild("ContentNode")
+			row.title = params.config.title
+	        for each item in params.config.items
+	            it1 = row.CreateChild("SimpleRowListItemData")
+	            it1.posterUrl = item.thumbnail
+	            it1.title = item.title
+				it1.url=item.url
+				it1.streamformat=item.streamformat
+				it1.description = item.description
+
+	        end for
+	    end for
+            m.top.content = data
+	end function
+
+   
+]]>
+</script>
+</component>

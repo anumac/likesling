@@ -1,0 +1,6 @@
+<Content>
+<item hdgridposterurl="pkg:/images/rectanglepg.jpg" shortdescriptionline1="MY TV" x="0" y="0" feed_url="http://10.172.108.134:8888/server/roku_lessons/drama.json"/>
+<item hdgridposterurl="pkg:/images/rectanglerotpg.jpg" shortdescriptionline1="News" x="0" y="1" feed_url="http://10.172.108.134:8888/server/roku_lessons/drama.json"/>
+<item hdgridposterurl="pkg:/images/labelpg.jpg" shortdescriptionline1="Sports" x="0" y="2" feed_url="http://10.172.108.134:8888/server/roku_lessons/comedy.json"/>
+<item hdgridposterurl="pkg:/images/posterpg.jpg" shortdescriptionline1="On Now" x="0" y="3" feed_url="http://10.172.108.134:8888/server/roku_lessons/horror.json"/>
+</Content>

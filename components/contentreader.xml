@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding = "utf-8" ?> 
+
+<component name = "ContentReader" extends = "Task" >
+ 
+  <interface>
+    <field id = "contenturi" type = "uri" />
+    <field id = "content" type = "node" />
+  </interface> 
+
+  <script type = "text/brightscript" >
+
+    <![CDATA[
+
+    sub init()
+      m.top.functionName = "getcontent"
+    end sub
+
+    sub getcontent()
+       print "in ContentReader getcontent()"
+       print "m.top.contenturi is " m.top.contenturi
+
+      content = createObject("roSGNode", "ContentNode")
+
+      contentxml = createObject("roXMLElement")
+
+      ' uncomment/conditionalize for development package XML transfers (pkg:/server/foo.xml)
+       xmlstring = ReadAsciiFile(m.top.contenturi)
+       contentxml.parse(xmlstring)
+
+      
+
+      if contentxml.getName()="Content"
+      
+        for each item in contentxml.GetNamedElements("item")
+        print "this is contentxml" item.getAttributes().feed_url
+          
+          itemcontent = content.createChild("ContentNode")
+          itemcontent.setFields(item.getAttributes())
+          node = createObject("roSGNode","grid_node")
+        
+          node.feed_url = item.getAttributes().feed_url
+        
+        
+          
+          itemcontent.appendChild(node)
+          print "in ContentReader something "  itemcontent.getChild(0)
+        end for
+      end if
+
+      m.top.content = content
+    end sub
+
+    ]]>
+
+  </script>
+
+</component>
