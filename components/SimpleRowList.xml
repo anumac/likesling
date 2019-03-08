@@ -16,7 +16,8 @@
 	
 	    m.top.itemComponentName = "SimpleRowListItem"
 	    m.top.numRows = 2
-	    m.top.itemSize = [196 * 6 + 20 * 2, 213]
+	   '' m.top.itemSize = [196 * 6 + 20 * 2, 213]
+	   m.top.itemsize = [1920,213]
 	    m.top.rowHeights = [213]
 	    m.top.rowItemSize = [ [196, 213], [196, 213], [196, 213],[196, 213],[196, 213],[196, 213] ]
 	    m.top.itemSpacing = [ 0, 80 ]

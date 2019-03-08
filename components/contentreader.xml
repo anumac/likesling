@@ -43,7 +43,7 @@
         
           
           itemcontent.appendChild(node)
-          print "in ContentReader something "  itemcontent.getChild(0)
+          'print "in ContentReader something "  itemcontent.getChild(0)
         end for
       end if
 

@@ -1,6 +1,9 @@
 function init()
 	? "[slingLikesene] init"
     m.overhang = m.top.findnode("overhang")
+    m.mainposter=m.top.findnode("mainPoster")
+    m.itemmask = m.top.findNode("itemMask")
+    m.descriptionLabel = m.top.findNode("descriptionLabel")
     m.overhang.title =  ""
     m.postergrid = m.top.findNode("examplePosterGrid")
     m.error_dialog = m.top.findNode("error_dialog")
@@ -12,25 +15,26 @@ function init()
     m.theRowList.setFocus(false)
     m.theRowList.visible="false"
     m.top.ObserveField("rowItem_selected","onRowItemSelected")
+    m.top.observeField("rowItemFocused", "onRowItemFocused")
     initializeVideoPlayer()
 
 
 
 end function
-
+'-------------------------------------------------------------
 sub populateGrid()
- m.readPosterGridTask = createObject("roSGNode", "ContentReader")
+      m.readPosterGridTask = createObject("roSGNode", "ContentReader")
       m.readPosterGridTask.contenturi = "pkg:/resources/posterJSon.json"
       m.readPosterGridTask.observeField("content", "showpostergrid")
       m.readPosterGridTask.control = "RUN"
       m.postergrid.setFocus(true)
 end sub
-
+'-------------------------------------------------------------
  sub showpostergrid()
       m.postergrid.content = m.readPosterGridTask.content
     end sub
 
-
+'-------------------------------------------------------------
 sub showdetailGrid(obj)
 'print "in showdetailgrid"
 m.theRowList.visible="true"
@@ -45,13 +49,13 @@ m.theRowList.setFocus(true)
     item = list.content.getChild(obj.getData())
    loadFeed(item.getchild(0).feed_url)
 
-    print item.getchild(0).feed_url
+   ' print item.getchild(0).feed_url
 
 
 
 
 end sub
-
+'-------------------------------------------------------------
 function updateConfig(params)
     categories = params.config.categories
     contentNode = createObject("roSGNode","ContentNode")
@@ -63,7 +67,7 @@ function updateConfig(params)
     end for
     m.postergrid.content = contentNode
 end function
-
+'-------------------------------------------------------------
 sub loadFeed(url)
 	m.feed_task = createObject("roSGNode", "load_feed_task")
 	m.feed_task.observeField("response", "onFeedResponse")
@@ -71,12 +75,12 @@ sub loadFeed(url)
 	m.feed_task.url = url
 	m.feed_task.control = "RUN"
 end sub
-
+'-------------------------------------------------------------
 sub onFeedError(obj)
 'showErrorDialog(obj.getData())
 print "error in onfeedError" obj.getData()
 end sub
-
+'-------------------------------------------------------------
 sub onFeedResponse(obj)
 	response = obj.getData()
 	data = parseJSON(response)
@@ -89,7 +93,30 @@ sub onFeedResponse(obj)
         print "feed data malformed"
 	end if
 end sub
+'-------------------------------------------------------------
+sub onRowItemFocused(obj)
+print "Inside the on row focused"
+m.mainposter.visible = "true"
+? "onRowItemFocused field: ";obj.getField()
+? "onRowItemFocused data: ";obj.getData()
+row = m.theRowList.rowItemFocused[0] 
+col = m.theRowList.rowItemFocused[1]
 
+  list = m.theRowList.content
+  ? "onRowItemFocused selected ContentNode: ";list.getChild(row).getChild(col)
+  item = list.getChild(row).getChild(col)
+  
+   
+    m.mainPoster.uri = item.posterUrl
+    m.descriptionLabel.text = item.description
+    m.descriptionLabel.wrap = "true"
+   ' m.descriptionLabel.numLines = "10"
+    m.descriptionLabel.visible = "true"
+
+
+end sub
+
+'-------------------------------------------------------------
 sub onRowItemSelected(obj)
 print "now in rowItemSelected"
 ? "onRowItemSelected field: ";obj.getField()
@@ -107,7 +134,7 @@ col = m.theRowList.rowItemSelected[1]
 
      videoContent = createObject("RoSGNode", "ContentNode") 
       videoContent.url =  list.getChild(row).getChild(col).url
-videoContent.streamformat = "hls"     
+      videoContent.streamformat = "hls"     
 
     m.theRowList.visible=false
 	m.overhang.visible = false
@@ -119,7 +146,7 @@ videoContent.streamformat = "hls"
 
 
 end sub
-
+'-------------------------------------------------------------
 
 sub initializeVideoPlayer()
 	m.videoplayer.EnableCookies()
@@ -129,12 +156,12 @@ sub initializeVideoPlayer()
 	m.videoplayer.observeFieldScoped("position", "onPlayerPositionChanged")
 	m.videoplayer.observeFieldScoped("state", "onPlayerStateChanged")
 end sub
-
+'-------------------------------------------------------------
 sub onPlayerPositionChanged(obj)
 	? "Player Position: ", obj.getData()
     
 end sub
-
+'-------------------------------------------------------------
 sub onPlayerStateChanged(obj)
 state = obj.getData()
 ? "onPlayerStateChanged: ";state
@@ -146,7 +173,7 @@ if state="error"
 	end if
 	
 end sub
-
+'-------------------------------------------------------------
 sub closeVideo()
 	m.videoplayer.control = "stop"
 	m.videoplayer.visible=false
@@ -154,7 +181,7 @@ sub closeVideo()
     m.theRowList.visible=true
     m.theRowList.setFocus(true)
 end sub
-
+'-------------------------------------------------------------
 sub showErrorDialog(message)
 	m.error_dialog.title = "ERROR"
 	m.error_dialog.message = message
@@ -163,7 +190,7 @@ sub showErrorDialog(message)
 	m.top.dialog = m.error_dialog
 end sub
 
-
+'-------------------------------------------------------------
 function onKeyEvent(key, press) as Boolean
 	? "[slinglikesene] onKeyEvent", key, press
 	if key = "up" and press

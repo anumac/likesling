@@ -7,6 +7,7 @@
           type="assocarray"
           alias="examplePosterGrid.itemSelected"
       />
+      <field id="rowItemFocused" type="assocArray" alwaysnotify="true" alias="theRowlist.rowItemFocused" />
     <field id="rowItem_selected" type="assocArray" alwaysnotify="true" alias="theRowlist.rowItemSelected" />  
       <function name="updateConfig" />
       </interface>
@@ -19,6 +20,8 @@
       color = "0x101023ff"
       optionsAvailable = "true" 
       >
+     
+
       <PosterGrid 
       id = "examplePosterGrid" 
      translation = "[ 400, 20 ]"
@@ -31,7 +34,37 @@
       itemSpacing = "[ 20, 20 ]" />
 
       </Overhang>
-<SimpleRowList id="theRowList" translation="[50,200]" />
+
+       <Poster
+       visible="true"
+       id="mainPoster"
+       uri="pkg:/images/posterpg.jpg"
+       width="500.0"
+      height="200.0"
+      translation = "[ 200, 200 ]"
+      scaleRotateCenter = "[ 256.0, 144.0 ]" />
+
+
+      <Rectangle 
+      id = "itemMask" 
+      color = "0x101010FF" 
+      opacity = "0.25" 
+      width = "500" 
+      height = "200" 
+      translation = "[ 200, 200 ]"
+      scaleRotateCenter = "[ 256.0, 144.0 ]" />
+
+      <Label
+  id="descriptionLabel"
+  height="200"
+  width="300"
+  font="font:MediumBoldSystemFont"
+  text = "try it"
+  horizAlign = "left"
+  vertAlign = "center"
+  translation="[750,200]" />
+
+<SimpleRowList id="theRowList" translation="[50,500]" />
  <Video
       id="videoplayer"
       visible="false"
