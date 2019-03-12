@@ -43,12 +43,15 @@
       height="200.0"
       translation = "[ 200, 200 ]"
       scaleRotateCenter = "[ 256.0, 144.0 ]" />
-
+      <Animation   id="testAnimation"  duration="10"  repeat="true"  control="start"  easeFunction="linear" >
+        <FloatFieldInterpolator    id = "testFloat"   key="[1, 0]"  keyValue="[0, 6.283]"     fieldToInterp="mainPoster.opacity"   />
+    </Animation>
 
       <Rectangle 
       id = "itemMask" 
       color = "0x101010FF" 
       opacity = "0.25" 
+      blendingEnabled="true"
       width = "500" 
       height = "200" 
       translation = "[ 200, 200 ]"
@@ -71,6 +74,26 @@
       translation="[0,0]"
       width="1920"
       height="1080" />
+      
+<!--
+  <LabelList
+      id="MenuList"
+      translation="[100,50]"
+      itemSize="[600,100]"
+      visible="false">
+      <ContentNode id="menucontent" role="content">
+        <ContentNode
+          title="Jeff Han Demos his Breakthrough Touchscreen"
+          url="http://video.ted.com/talks/podcast/JeffHan_2006_480.mp4"
+          description="mp4" />
+        <ContentNode
+          title="David Kelley on Human-Centered Design"
+          url="http://video.ted.com/talks/podcast/DavidKelley_2002_480.mp4"
+          description="mp4" />
+        
+      </ContentNode>
+    </LabelList>
+    -->
       <Dialog
     title="Error"
     visible="false"
