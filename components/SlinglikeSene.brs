@@ -1,5 +1,6 @@
 function init()
 	? "[slingLikesene] init"
+    'this is my first commit test to git
     m.overhang = m.top.findnode("overhang")
     m.mainposter=m.top.findnode("mainPoster")
     m.itemmask = m.top.findNode("itemMask")
@@ -24,6 +25,7 @@ end function
 '-------------------------------------------------------------
 sub populateGrid()
       m.readPosterGridTask = createObject("roSGNode", "ContentReader")
+      
       m.readPosterGridTask.contenturi = "pkg:/resources/posterJSon.json"
       m.readPosterGridTask.observeField("content", "showpostergrid")
       m.readPosterGridTask.control = "RUN"
