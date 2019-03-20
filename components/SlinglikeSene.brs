@@ -1,5 +1,5 @@
 function init()
-'checking on left Branch 10:45 new branch
+'checking on left Branch 10:55: new branch
 	? "[slingLikesene] init"
     'this is my first commit test to git
     m.overhang = m.top.findnode("overhang")
