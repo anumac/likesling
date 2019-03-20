@@ -4,6 +4,12 @@ major_version=1
 minor_version=0
 build_version=0
 
+##bsprof_enable=1
+##bsprof_data_dest=local
+##bsprof_sample_ratio=1.0
+
+##bsprof_enable_mem=1
+
 ## Channel Icons
 #### Image size for mm_icon_focus_hd: 290x218px
 mm_icon_focus_hd=pkg:/images/channel_logo_hd.png
