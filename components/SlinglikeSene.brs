@@ -222,5 +222,15 @@ function onKeyEvent(key, press) as Boolean
 			return true
   end if
   end if
+  if key = "OK" and press 
+ ' print "inside video buffering"
+ 'code not working . Check it out and fix
+      if m.videoplayer.visible
+          print "inside video buffering"
+			m.videoplayer.bufferingBar.visible = true
+            m.videoplayer.TrickPlayBar.visible = true
+			return true
+  end if
+  end if
   return false
 end function
