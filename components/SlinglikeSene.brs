@@ -1,4 +1,5 @@
 function init()
+'this is where git commits
 	? "[slingLikesene] init"
     'this is my first commit test to git
     m.overhang = m.top.findnode("overhang")
@@ -18,8 +19,6 @@ function init()
     m.top.ObserveField("rowItem_selected","onRowItemSelected")
     m.top.observeField("rowItemFocused", "onRowItemFocused")
     initializeVideoPlayer()
-
-
 
 end function
 '-------------------------------------------------------------
@@ -51,7 +50,7 @@ m.theRowList.setFocus(true)
     item = list.content.getChild(obj.getData())
    loadFeed(item.getchild(0).feed_url)
 
-   ' print item.getchild(0).feed_url
+    print item.getchild(0).feed_url
 
 
 
