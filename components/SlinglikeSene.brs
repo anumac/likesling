@@ -1,4 +1,5 @@
 function init()
+'this is where git commits
 	? "[slingLikesene] init"
     'this is my first commit test to git
     m.overhang = m.top.findnode("overhang")
